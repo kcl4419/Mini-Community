@@ -4,6 +4,7 @@ import PIA.MiniCommunity.common.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
@@ -29,12 +30,14 @@ public class User extends BaseTimeEntity {
     private String nickname;
 
     @Builder
-    public class UserInfo{
-        private Long id;
-        private String name;
-        private String password;
-        private String nickname;
+    public User(Long id, String name, String password, String nickname) {
+        Assert.notNull(name,"name must not by empty");
+        Assert.notNull(password,"password must not by empty");
+        Assert.notNull(nickname,"nickname must not by empty");
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.nickname = nickname;
     }
-
 
 }
